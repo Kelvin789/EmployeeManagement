@@ -1,13 +1,16 @@
 ﻿[
   {
+    "id":  1,
     "title": "Sales Manager",
     "isActive": true
   },
   {
+    "id": 2,
     "title": "Sales Assistant Manager",
     "isActive": true
   },
   {
+    "id": 3,
     "title": "Sales Associate",
     "isActive": false
   }

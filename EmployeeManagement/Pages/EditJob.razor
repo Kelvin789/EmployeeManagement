@@ -1,0 +1,28 @@
+﻿@page "/EditJob"
+@inject AppService App
+
+<h3>Edit Job</h3>
+
+<br />
+
+@if (App.Job == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div style="max-width:800px">
+        <div class="col">
+            <label>Job Title:</label>
+            <input type="text" placeholder="Job Title..." @bind-value="App.Job.Title" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Active Status:</label>
+            <input type="checkbox" placeholder="Active Status..." @bind="App.Job.IsActive" class="form-control" />
+        </div>
+    </div>
+}
+
+@code {
+
+}
