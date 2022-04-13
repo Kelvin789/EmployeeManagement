@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "o0OJYkSTIspNYeWcf/GlFMFWSJgrz/NaJZ//UoiqdeCVEbXmF8D+FKlAqec2bjlvp1BveFZNu7uFNmq7OLDZ+w==",
+  "dgSpecHash": "N49cUtYGi4UQHmxiNnXPIQ5R5gSxw0Qs4WKQzGf9HM/bNh8P3FfHh96oY2pUUPOD3Axg+PVVAdc6wVvsu1z6vw==",
   "success": true,
   "projectFilePath": "C:\\Users\\kdj\\Documents\\GitHub\\EmployeeManagement\\EmployeeManagement.Shared\\EmployeeManagement.Shared.csproj",
   "expectedPackageFiles": [
@@ -11,11 +11,12 @@
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.aspnetcore.components.web\\3.1.22\\microsoft.aspnetcore.components.web.3.1.22.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.aspnetcore.metadata\\3.1.22\\microsoft.aspnetcore.metadata.3.1.22.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+    "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.22\\microsoft.extensions.dependencyinjection.3.1.22.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.22\\microsoft.extensions.dependencyinjection.abstractions.3.1.22.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.22\\microsoft.extensions.logging.abstractions.3.1.22.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.options\\3.1.22\\microsoft.extensions.options.3.1.22.nupkg.sha512",
-    "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.22\\microsoft.extensions.primitives.3.1.22.nupkg.sha512",
+    "C:\\Users\\kdj\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\microsoft.jsinterop\\3.1.22\\microsoft.jsinterop.3.1.22.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
@@ -23,7 +24,7 @@
     "C:\\Users\\kdj\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
-    "C:\\Users\\kdj\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
+    "C:\\Users\\kdj\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\system.text.encodings.web\\4.7.1\\system.text.encodings.web.4.7.1.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\kdj\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
