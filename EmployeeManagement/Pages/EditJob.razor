@@ -13,16 +13,23 @@ else
 {
     <div style="max-width:800px">
         <div class="col">
-            <label>Job Title:</label>
+            <p>Job Title:</p>
             <input type="text" placeholder="Job Title..." @bind-value="App.Job.Title" class="form-control" />
         </div>
         <div class="col">
             <label>Active Status:</label>
             <input type="checkbox" placeholder="Active Status..." @bind="App.Job.IsActive" class="form-control" />
         </div>
+
+        <button @onclick="SaveJob" type="button" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk-pen"></i>Save Job
+        </button>
     </div>
 }
 
 @code {
-
+    void SaveJob()
+    {
+        //App.Job;
+    }
 }
