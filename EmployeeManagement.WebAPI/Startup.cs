@@ -1,12 +1,12 @@
 using EmployeeManagement.Shared.Services;
-using EmployeeManagement.WebAPI.Data;
+using EmployeeManagement.Server.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace EmployeeManagement.WebAPI
+namespace EmployeeManagement.Server
 {
     public class Startup
     {

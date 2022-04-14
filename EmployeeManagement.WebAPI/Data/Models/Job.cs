@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EmployeeManagement.Models
+namespace EmployeeManagement.Server.Data.Models
 {
     public class Job
     {

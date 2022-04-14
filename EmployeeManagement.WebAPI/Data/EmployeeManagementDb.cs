@@ -1,7 +1,8 @@
-﻿using EmployeeManagement.Shared.Services;
+﻿using EmployeeManagement.Server.Data.Models;
+using EmployeeManagement.Shared.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace EmployeeManagement.WebAPI.Data
+namespace EmployeeManagement.Server.Data
 {
     public class EmployeeManagementDb : DbContext
     {
@@ -16,5 +17,7 @@ namespace EmployeeManagement.WebAPI.Data
         {
             optionsBuilder.UseSqlServer(_configService.ConnectionString);
         }
+
+        public DbSet<Job> Jobs { get; set; }
     }
 }
