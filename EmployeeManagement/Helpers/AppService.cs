@@ -1,6 +1,6 @@
-﻿using EmployeeManagement.Models;
+﻿using EmployeeManagement.Shared;
 
-namespace EmployeeManagement.Helpers
+namespace EmployeeManagement.Client.Helpers
 {
     public class AppService
     {
