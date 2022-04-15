@@ -1,10 +1,10 @@
-using EmployeeManagement.Shared.Services;
 using EmployeeManagement.Server.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Server
 {
@@ -20,11 +20,17 @@ namespace EmployeeManagement.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            // TODO: Custom services via EmployeeManagement.Shared.Services class approach
+            //services.AddScoped<ConfigService>();
+            //services.AddScoped<EmployeeManagementDb>();
 
-            // custom services
-            services.AddScoped<ConfigService>();
-            services.AddScoped<EmployeeManagementDb>();
+            // Database context connection link
+            services.AddDbContext<EmployeeManagementDb>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("EmployeeManagementDb"));
+            });
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

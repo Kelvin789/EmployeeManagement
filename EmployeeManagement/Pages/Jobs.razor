@@ -1,13 +1,15 @@
 @page "/jobs"
-@inject HttpClient Http
+@*@inject HttpClient Http
 @inject NavigationManager Nav
-@inject AppService App
+@inject AppService App*@
 
 <h1>Job Overview</h1>
 
 <p>This page contains all the jobs available in the system.</p>
 
-@if (JobList == null)
+<JobList></JobList>
+
+@*@if (JobList == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -42,25 +44,25 @@ else
             }
         </tbody>
     </table>
-}
+}*@
 
 @code {
-    private Job[] JobList;
-    private Job SelectedJob;
+    //private Job[] JobList;
+    //private Job SelectedJob;
 
-    protected override async Task OnInitializedAsync()
-    {
-        JobList = await Http.GetFromJsonAsync<Job[]>("sample-data/jobs.json");
-    }
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    JobList = await Http.GetFromJsonAsync<Job[]>("sample-data/jobs.json");
+    //}
 
-    void AddJob()
-    {
-        Nav.NavigateTo("AddJob");
-    }
+    //void AddJob()
+    //{
+    //    Nav.NavigateTo("AddJob");
+    //}
 
-    void EditJob(Job job)
-    {
-        App.Job = job;
-        Nav.NavigateTo("EditJob");
-    }
+    //void EditJob(Job job)
+    //{
+    //    App.Job = job;
+    //    Nav.NavigateTo("EditJob");
+    //}
 }

@@ -10,12 +10,17 @@ namespace EmployeeManagement.Server.Controllers
     [Route("[controller]")]
     public class JobController : ControllerBase
     {
-        private EmployeeManagementDb db;
+        private readonly EmployeeManagementDb db;
+
+        public JobController(EmployeeManagementDb _db)
+        {
+            this.db = _db;
+        }
 
         [HttpGet]
         public IEnumerable<Job> Get()
         {
-            var JobList = db.Jobs.ToList();
+            var JobList = db.Job.ToList();
 
             return JobList;
         }
@@ -23,7 +28,7 @@ namespace EmployeeManagement.Server.Controllers
         [HttpGet("job/list")]
         public ActionResult GetList()
         {
-            var JobList = db.Jobs.ToList();
+            var JobList = db.Job.ToList();
 
             if (JobList != null)
             {
