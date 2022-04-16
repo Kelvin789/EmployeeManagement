@@ -33,7 +33,7 @@ namespace EmployeeManagement.Server.Controllers
 
             try
             {
-                string actionCompleted = "none";
+                string actionCompleted = "No action taken";
                 Job existingJob = db.Job.Where(j => j.ID == job.ID).FirstOrDefault();
 
                 if (existingJob != null)
@@ -51,7 +51,7 @@ namespace EmployeeManagement.Server.Controllers
                 db.SaveChanges();
 
                 response.ReturnCode = 1;
-                response.ReturnMessage = $"Job {job.ID} - {job.Title} - {job.IsActive} - {actionCompleted}";
+                response.ReturnMessage = $"{actionCompleted} for job title: '{job.Title}', active status: '{job.IsActive}'";
             }
             catch (Exception ex)
             {
@@ -62,7 +62,42 @@ namespace EmployeeManagement.Server.Controllers
             return Ok(response);
         }
 
-        [HttpGet("job/list")]
+        [HttpPost("delete")]
+        public ActionResult Delete(Job job)
+        {
+            SaveJobResponse response = new SaveJobResponse();
+
+            try
+            {
+                string actionCompleted = "No action taken";
+                Job existingJob = db.Job.Where(j => j.ID == job.ID).FirstOrDefault();
+
+                if (existingJob != null)
+                {
+                    db.Job.Remove(existingJob);
+                    actionCompleted = "Job deleted";
+                    db.SaveChanges();
+
+                    response.ReturnCode = 1;
+                    response.ReturnMessage = $"{actionCompleted} for job title: '{job.Title}', active status: '{job.IsActive}'";
+                }
+                else
+                {
+                    response.ReturnCode = -1;
+                    response.ReturnMessage = $"{actionCompleted}, cannot find job title: '{job.Title}', active status: '{job.IsActive}'";
+                    return NotFound(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                response.ReturnCode = -1;
+                response.ReturnMessage = $"{ex.Message}";
+            }
+
+            return Ok(response);
+        }
+
+        [HttpGet("list")]
         public ActionResult GetList()
         {
             var JobList = db.Job.ToList();

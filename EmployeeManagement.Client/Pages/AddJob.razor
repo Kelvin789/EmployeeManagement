@@ -1,7 +1,48 @@
 ﻿@page "/AddJob"
+@inject AppService App
 
 <h3>Add Job</h3>
 
-@code {
+<br />
 
+<div style="max-width:800px">
+    <div class="col">
+        <p>Job Title:</p>
+        <input type="text" placeholder="Job Title..." @bind-value="newJob.Title" class="form-control" />
+    </div>
+    <div class="col">
+        <label>Active Status:</label>
+        <input type="checkbox" placeholder="Active Status..." @bind="newJob.IsActive" class="form-control" />
+    </div>
+    <div class="col">
+        <button @onclick="CreateJob" type="button" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk-pen"></i>Save Job
+        </button>
+    </div>
+</div>
+
+<MessageBox @ref="messageBox" MessageBoxButtons="MSGBOX_BUTTONS.Ok">
+    <Title>Add Job</Title>
+    <Body>
+        @if (newJob != null)
+        {
+            <p>@response.ReturnMessage</p>
+        }
+    </Body>
+</MessageBox>
+
+@code {
+    Job newJob = new Job();
+    SaveJobResponse response = new SaveJobResponse();
+    MessageBox messageBox;
+
+    async Task CreateJob()
+    {
+        response = await App.SaveJob(newJob);
+
+        if (response.ReturnCode == 1)
+        {
+            messageBox.Show();
+        }
+    }
 }

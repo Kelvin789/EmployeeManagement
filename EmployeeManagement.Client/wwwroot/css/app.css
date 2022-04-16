@@ -185,3 +185,11 @@ app {
 .show {
     display: block;
 }
+
+.fade {
+    background: rgba(211, 211, 211, 0.5);
+}
+
+.modal-dialog {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
