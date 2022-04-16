@@ -10,5 +10,6 @@ namespace EmployeeManagement.Server.Data
         }
 
         public DbSet<Job> Job { get; set; }
+        public DbSet<Employee> Employee { get; set; }
     }
 }

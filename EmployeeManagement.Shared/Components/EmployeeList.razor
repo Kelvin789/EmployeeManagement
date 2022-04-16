@@ -1,0 +1,76 @@
+﻿@inject HttpClient Http
+@inject NavigationManager Nav
+@inject AppService App
+
+
+@if (employeeList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Actions</th>
+                <th>Employee No</th>
+                <th>Name</th>
+                <th>Phone No</th>
+                <th>Email</th>
+                <th>Job Title</th>
+                <th>Salary Amount</th>
+                <th>Start Date</th>
+                <th>Leave Date</th>
+                <th>Is Active</th>
+                <th>Date Created</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in employeeList)
+            {
+                <tr>
+                    <td>
+                        <button @onclick="() => EditEmployee(employee)" type="button" class="btn btn-primary btn-sm" title="Edit Employee">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </button>
+                    </td>
+                    <td>@employee.EmployeeNo</td>
+                    <td>@employee.Name</td>
+                    <td>@employee.PhoneNo</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.JobID</td>
+                    <td>@employee.SalaryAmount</td>
+                    <td>@employee.StartDate.ToShortDateString()</td>
+                    <td>@(employee.LeaveDate.HasValue?@employee.LeaveDate.Value.ToString("dd/MM/yyyy"):"")</td>
+                    <td>@employee.IsActive</td>
+                    <td>@employee.DateCreated.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public List<Employee> employeeList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Http.GetAsync(URLStrings.ServerURL + "/employee/getlist");
+
+        if (response.IsSuccessStatusCode)
+        {
+            employeeList = await response.Content.ReadAsAsync<List<Employee>>();
+        }
+    }
+
+    void AddEmployee()
+    {
+        Nav.NavigateTo("AddEmployee");
+    }
+
+    void EditEmployee(Employee employee)
+    {
+        //App.Employee = employee;
+        Nav.NavigateTo("EditEmployee");
+    }
+}

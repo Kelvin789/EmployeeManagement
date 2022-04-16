@@ -1,75 +1,23 @@
 @page "/employees"
-@inject HttpClient Http
+@inject NavigationManager Nav
 
 <h1>Employee Overview</h1>
 
 <p>This page contains all the employees available in the system.</p>
 
-@if (EmployeeList == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Employee No</th>
-                <th>Name</th>
-                <th>Phone No</th>
-                <th>Email</th>
-                <th>Job Title</th>
-                <th>Salary Amount</th>
-                <th>Start Date</th>
-                <th>Is Active</th>
-                <th>Date Employee Created</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var employee in EmployeeList)
-            {
-                <tr>
-                    <td>@employee.EmployeeNo</td>
-                    <td>@employee.Name</td>
-                    <td>@employee.PhoneNo</td>
-                    <td>@employee.Email</td>
-                    <td>@employee.JobTitle</td>
-                    <td>@employee.SalaryAmount</td>
-                    <td>@employee.StartDate</td>
-                    <td>@employee.IsActive</td>
-                    <td>@employee.DateCreated</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<div>
+    <button @onclick="AddEmployee" type="button" class="btn btn-primary" title="Add Employee" style="float:left">
+        <i class="fa-solid fa-user-plus m-2"></i>Add Employee
+    </button>
+</div>
+
+<br />
+
+<EmployeeList></EmployeeList>
 
 @code {
-    private Employee[] EmployeeList;
-
-    protected override async Task OnInitializedAsync()
+    void AddEmployee()
     {
-        EmployeeList = await Http.GetFromJsonAsync<Employee[]>("sample-data/employees.json");
-    }
-
-    public class Employee
-    {
-        public string EmployeeNo { get; set; }
-
-        public string Name { get; set; }
-
-        public string PhoneNo { get; set; }
-
-        public string Email { get; set; }
-
-        public string JobTitle { get; set; }
-
-        public string SalaryAmount { get; set; }
-
-        public DateTime StartDate { get; set; }
-
-        public bool IsActive { get; set; }
-
-        public DateTime DateCreated { get; set; }
+        Nav.NavigateTo("AddEmployee");
     }
 }
