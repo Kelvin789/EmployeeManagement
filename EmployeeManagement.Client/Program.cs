@@ -1,4 +1,4 @@
-using EmployeeManagement.Client.Helpers;
+using EmployeeManagement.Shared.Services;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using System;

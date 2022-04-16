@@ -1,8 +1,7 @@
 ﻿@inject HttpClient Http
+@inject NavigationManager Nav
+@inject AppService App
 
-<h3>Job List</h3>
-
-Job list from the shared project
 
 @if (jobList == null)
 {
@@ -13,6 +12,7 @@ else
     <table class="table">
         <thead>
             <tr>
+                <th>Actions</th>
                 <th>Job Title</th>
                 <th>Active Status</th>
             </tr>
@@ -21,6 +21,11 @@ else
             @foreach (var job in jobList)
             {
                 <tr>
+                    <td>
+                        <button @onclick="() => EditJob(job)" type="button" class="btn btn-primary btn-sm" title="Edit Job">
+                            <i class="fa-solid fa-user-pen"></i>
+                        </button>
+                    </td>
                     <td>@job.Title</td>
                     <td>@job.IsActive</td>
                 </tr>
@@ -34,11 +39,22 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var response = await Http.GetAsync("https://localhost:44353/job/getjobs");
+        var response = await Http.GetAsync(URLStrings.ServerURL + "/job/getjobs");
 
         if (response.IsSuccessStatusCode)
         {
             jobList = await response.Content.ReadAsAsync<List<Job>>();
         }
+    }
+
+    void AddJob()
+    {
+        Nav.NavigateTo("AddJob");
+    }
+
+    void EditJob(Job job)
+    {
+        App.Job = job;
+        Nav.NavigateTo("EditJob");
     }
 }

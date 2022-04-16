@@ -1,68 +1,23 @@
 @page "/jobs"
-@*@inject HttpClient Http
 @inject NavigationManager Nav
-@inject AppService App*@
 
 <h1>Job Overview</h1>
 
 <p>This page contains all the jobs available in the system.</p>
 
+<div>
+    <button @onclick="AddJob" type="button" class="btn btn-primary" title="Add Job" style="float:left">
+        <i class="fa-solid fa-user-plus m-2"></i>Add Job
+    </button>
+</div>
+
+<br />
+
 <JobList></JobList>
 
-@*@if (JobList == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <h3>
-        <button @onclick="AddJob" type="button" class="btn btn-primary" title="Add Job" style="float:left">
-            <i class="fa-solid fa-user-plus"></i>Add Job
-        </button>
-    </h3>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Actions</th>
-                <th>Job Title</th>
-                <th>Active Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var job in JobList)
-            {
-                <tr>
-                    <td>
-                        <button @onclick="() => EditJob(job)" type="button" class="btn btn-primary" title="Edit Job">
-                            <i class="fa-solid fa-user-pen"></i>Edit
-                        </button>
-                    </td>
-                    <td>@job.Title</td>
-                    <td>@job.IsActive</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}*@
-
 @code {
-    //private Job[] JobList;
-    //private Job SelectedJob;
-
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    JobList = await Http.GetFromJsonAsync<Job[]>("sample-data/jobs.json");
-    //}
-
-    //void AddJob()
-    //{
-    //    Nav.NavigateTo("AddJob");
-    //}
-
-    //void EditJob(Job job)
-    //{
-    //    App.Job = job;
-    //    Nav.NavigateTo("EditJob");
-    //}
+    void AddJob()
+    {
+        Nav.NavigateTo("AddJob");
+    }
 }

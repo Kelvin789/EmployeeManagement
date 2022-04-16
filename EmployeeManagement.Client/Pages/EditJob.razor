@@ -1,7 +1,7 @@
 ﻿@page "/EditJob"
 @inject AppService App
 
-@*<h3>Edit Job</h3>
+<h3>Edit Job</h3>
 
 <br />
 
@@ -20,16 +20,40 @@ else
             <label>Active Status:</label>
             <input type="checkbox" placeholder="Active Status..." @bind="App.Job.IsActive" class="form-control" />
         </div>
-
-        <button @onclick="SaveJob" type="button" class="btn btn-primary">
-            <i class="fa-solid fa-floppy-disk-pen"></i>Save Job
-        </button>
+        <div class="col">
+            <button @onclick="SaveJob" type="button" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk-pen"></i>Save Job
+            </button>
+        </div>
     </div>
-}*@
+}
+
+<div class="modal @(showModal?"show": "")" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Save Job</h5>
+            </div>
+            <div class="modal-body">
+                <p>@App.Job.Title saved successfully.</p>
+            </div>
+            <div class="modal-footer align-self-center">
+                <button @onclick="()=>{showModal=false;}" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @code {
-    void SaveJob()
+    bool showModal = false;
+
+    async Task SaveJob()
     {
-        //App.Job;
+        var response = await App.SaveJob(App.Job);
+
+        if (response.ReturnCode == 1)
+        {
+            showModal = true;
+        }
     }
 }
