@@ -1,7 +1,44 @@
-﻿<h3>Job List</h3>
+﻿@inject HttpClient Http
+
+<h3>Job List</h3>
 
 Job list from the shared project
 
-@code {
+@if (jobList == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Active Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var job in jobList)
+            {
+                <tr>
+                    <td>@job.Title</td>
+                    <td>@job.IsActive</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
+@code {
+    public List<Job> jobList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Http.GetAsync("https://localhost:44353/job/getjobs");
+
+        if (response.IsSuccessStatusCode)
+        {
+            jobList = await response.Content.ReadAsAsync<List<Job>>();
+        }
+    }
 }

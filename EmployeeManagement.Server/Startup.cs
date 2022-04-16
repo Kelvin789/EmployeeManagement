@@ -30,6 +30,23 @@ namespace EmployeeManagement.Server
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeManagementDb"));
             });
 
+            // Define connection policy
+            services.AddCors(options => 
+            {
+                options.AddPolicy(name: "CorsPolicy",
+                    builder =>
+                    {
+                        // Code to allow ANY origin (for testing)
+                        builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader();
+
+                        // Code to specify origin
+                        //builder.WithOrigins("https://localhost:44376/")
+                        //       .WithMethods("GET", "POST");
+                    });
+            });
+
             services.AddControllers();
         }
 
@@ -42,6 +59,8 @@ namespace EmployeeManagement.Server
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("CorsPolicy"); // Allows connection between Client and Server projects
 
             app.UseRouting();
 

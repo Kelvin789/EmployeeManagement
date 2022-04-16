@@ -1,8 +1,8 @@
-﻿using EmployeeManagement.Server.Data.Models;
-using EmployeeManagement.Server.Data;
+﻿using EmployeeManagement.Server.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using EmployeeManagement.Shared.Models;
 
 namespace EmployeeManagement.Server.Controllers
 {
@@ -17,7 +17,7 @@ namespace EmployeeManagement.Server.Controllers
             this.db = _db;
         }
 
-        [HttpGet]
+        [HttpGet("getjobs")]
         public IEnumerable<Job> Get()
         {
             var JobList = db.Job.ToList();

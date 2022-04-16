@@ -1,4 +1,4 @@
-﻿using EmployeeManagement.Server.Data.Models;
+﻿using EmployeeManagement.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement.Server.Data
