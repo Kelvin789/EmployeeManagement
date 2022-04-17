@@ -38,7 +38,7 @@ else
                     <td>@employee.Name</td>
                     <td>@employee.PhoneNo</td>
                     <td>@employee.Email</td>
-                    <td>@employee.JobID</td>
+                    <td>@jobList.FirstOrDefault(e => e.ID == employee.JobID).Title</td>
                     <td>@employee.SalaryAmount</td>
                     <td>@employee.StartDate.ToShortDateString()</td>
                     <td>@(employee.LeaveDate.HasValue?@employee.LeaveDate.Value.ToString("dd/MM/yyyy"):"")</td>
@@ -52,6 +52,7 @@ else
 
 @code {
     public List<Employee> employeeList { get; set; }
+    public List<Job> jobList { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -60,6 +61,7 @@ else
         if (response.IsSuccessStatusCode)
         {
             employeeList = await response.Content.ReadAsAsync<List<Employee>>();
+            jobList = await Http.GetFromJsonAsync<List<Job>>(URLStrings.ServerURL + "/job/getlist");
         }
     }
 
@@ -70,7 +72,7 @@ else
 
     void EditEmployee(Employee employee)
     {
-        //App.Employee = employee;
+        App.Employee = employee;
         Nav.NavigateTo("EditEmployee");
     }
 }

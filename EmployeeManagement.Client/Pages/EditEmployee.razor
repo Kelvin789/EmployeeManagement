@@ -1,0 +1,113 @@
+﻿@page "/EditEmployee"
+@inject AppService App
+@inject NavigationManager Nav
+@inject HttpClient Http
+
+<h3>Edit Employee</h3>
+
+<br />
+
+@if (App.Employee == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div style="max-width:800px">
+        <div class="row mb-3">
+            <div class="col">
+                <label>Employee No:</label>
+                <input type="text" placeholder="Employee No..." @bind-value="App.Employee.EmployeeNo" class="form-control" />
+            </div>
+            <div class="col">
+                <label>Name:</label>
+                <input type="text" placeholder="Name..." @bind-value="App.Employee.Name" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label>Phone No:</label>
+                <input type="text" placeholder="Phone No..." @bind-value="App.Employee.PhoneNo" class="form-control" />
+            </div>
+            <div class="col">
+                <label>Email:</label>
+                <input type="text" placeholder="Email..." @bind-value="App.Employee.Email" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label>Job Title:</label>
+                <select class="form-control" @bind="App.Employee.JobID">
+                    @if (jobList != null)
+                    {
+                        @foreach (var job in jobList)
+                        {
+                            <option value="@job.ID">@job.Title</option>
+                        }
+                    }
+                </select>
+            </div>
+            <div class="col">
+                <label>Salary Amount:</label>
+                <input type="text" placeholder="Salary Amount..." @bind-value="App.Employee.SalaryAmount" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label>Start Date:</label>
+                <input type="text" placeholder="Start Date..." @bind-value="App.Employee.StartDate" class="form-control" />
+            </div>
+            <div class="col">
+                <label>Leave Date:</label>
+                <input type="text" placeholder="Leave Date..." @bind-value="App.Employee.LeaveDate" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label>Active Status:</label>
+                <input type="checkbox" placeholder="Active Status..." @bind="App.Employee.IsActive" class="form-control" />
+            </div>
+            <div class="col">
+                <label>Record Created:</label>
+                <input type="text" readonly="readonly" @bind="App.Employee.DateCreated" class="form-control" />
+            </div>
+        </div>
+        <div class="col">
+            <button @onclick="SaveEmployee" type="button" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk m-2"></i>Save Employee
+            </button>
+        </div>
+    </div>
+}
+
+<MessageBox @ref="messageBoxForSave" MessageBoxButtons="MSGBOX_BUTTONS.Ok">
+    <Title>Edit Employee</Title>
+    <Body>
+        @if (App.Employee != null)
+        {
+            <p>@response.ReturnMessage</p>
+        }
+    </Body>
+</MessageBox>
+
+@code {
+    public List<Job> jobList { get; set; }
+    bool showModal = false;
+    SaveResponse response = new SaveResponse();
+    MessageBox messageBoxForSave;
+
+    protected override async Task OnInitializedAsync()
+    {
+        jobList = await Http.GetFromJsonAsync<List<Job>>(URLStrings.ServerURL + "/job/getlist");
+    }
+
+    async Task SaveEmployee()
+    {
+        response = await App.SaveEmployee(App.Employee);
+
+        if (response.ReturnCode == 1)
+        {
+            messageBoxForSave.Show();
+        }
+    }
+}
