@@ -7,7 +7,7 @@
 
 <div style="max-width:800px">
     <div class="col">
-        <p>Job Title:</p>
+        <label>Job Title:</label>
         <input type="text" placeholder="Job Title..." @bind-value="newJob.Title" class="form-control" />
     </div>
     <div class="col">
@@ -33,7 +33,7 @@
 
 @code {
     Job newJob = new Job();
-    SaveJobResponse response = new SaveJobResponse();
+    SaveResponse response = new SaveResponse();
     MessageBox messageBox;
 
     async Task CreateJob()

@@ -21,7 +21,7 @@ namespace EmployeeManagement.Server.Controllers
         [HttpGet("getjobs")]
         public IEnumerable<Job> Get()
         {
-            var JobList = db.Job.ToList();
+            List<Job> JobList = db.Job.ToList();
 
             return JobList;
         }
@@ -29,7 +29,7 @@ namespace EmployeeManagement.Server.Controllers
         [HttpPost("edit")]
         public ActionResult Edit(Job job)
         {
-            SaveJobResponse response = new SaveJobResponse();
+            SaveResponse response = new SaveResponse();
 
             try
             {
@@ -65,7 +65,7 @@ namespace EmployeeManagement.Server.Controllers
         [HttpPost("delete")]
         public ActionResult Delete(Job job)
         {
-            SaveJobResponse response = new SaveJobResponse();
+            SaveResponse response = new SaveResponse();
 
             try
             {
@@ -97,10 +97,10 @@ namespace EmployeeManagement.Server.Controllers
             return Ok(response);
         }
 
-        [HttpGet("list")]
+        [HttpGet("getlist")]
         public ActionResult GetList()
         {
-            var JobList = db.Job.ToList();
+            List<Job> JobList = db.Job.Where(j => j.IsActive).ToList();
 
             if (JobList != null)
             {

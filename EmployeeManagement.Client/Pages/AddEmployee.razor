@@ -1,0 +1,100 @@
+﻿@page "/AddEmployee"
+@inject AppService App
+@inject HttpClient Http
+
+<h3>Add Employee</h3>
+
+<br />
+
+<div style="max-width:800px">
+    <div class="row mb-3">
+        <div class="col">
+            <label>Employee No:</label>
+            <input type="text" placeholder="Employee No..." @bind-value="newEmployee.EmployeeNo" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Name:</label>
+            <input type="text" placeholder="Name..." @bind-value="newEmployee.Name" class="form-control" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Phone No:</label>
+            <input type="text" placeholder="Phone No..." @bind-value="newEmployee.PhoneNo" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Email:</label>
+            <input type="text" placeholder="Email..." @bind-value="newEmployee.Email" class="form-control" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Job Title:</label>
+            @*<InputSelect class="form-control" @bind-Value="newEmployee.JobID">
+                @foreach (var job in jobList)
+                {
+                    <option value="@job.ID">@job.Title</option>
+                }
+            </InputSelect>*@
+
+            @*<input type="text" placeholder="Job Title..." @bind-value="jobList" class="form-control" />*@
+        </div>
+        <div class="col">
+            <label>Salary Amount:</label>
+            <input type="text" placeholder="Salary Amount..." @bind-value="newEmployee.SalaryAmount" class="form-control" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Start Date:</label>
+            <input type="text" placeholder="Start Date..." @bind-value="newEmployee.StartDate" class="form-control" />
+        </div>
+        <div class="col">
+            <label>Leave Date:</label>
+            <input type="text" placeholder="Leave Date..." @bind-value="newEmployee.LeaveDate" class="form-control" />
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label>Active Status:</label>
+            <input type="checkbox" placeholder="Active Status..." @bind="newEmployee.IsActive" class="form-control" />
+        </div>
+    </div>
+    <div class="col">
+        <button @onclick="CreateEmployee" type="button" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk-pen"></i>Save Employee
+        </button>
+    </div>
+</div>
+
+<MessageBox @ref="messageBox" MessageBoxButtons="MSGBOX_BUTTONS.Ok">
+    <Title>Add Employee</Title>
+    <Body>
+        @if (newEmployee != null)
+        {
+            <p>@response.ReturnMessage</p>
+        }
+    </Body>
+</MessageBox>
+
+@code {
+    public List<Job> jobList { get; set; }
+    Employee newEmployee = new Employee();
+    SaveResponse response = new SaveResponse();
+    MessageBox messageBox;
+
+    protected override async Task OnInitializedAsync()
+    {
+        jobList = await Http.GetFromJsonAsync<List<Job>>(URLStrings.ServerURL + "/job/getlist");
+    }
+
+    async Task CreateEmployee()
+    {
+        response = await App.SaveEmployee(newEmployee);
+
+        if (response.ReturnCode == 1)
+        {
+            messageBox.Show();
+        }
+    }
+}
